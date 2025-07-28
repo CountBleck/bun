@@ -25,6 +25,10 @@ using namespace JSC;
     macro(AbortSignal) \
     macro(Buffer) \
     macro(Bun) \
+    macro(CompressionStreamEncoder) \
+    macro(CompressionStreamTransform) \
+    macro(DecompressionStreamDecoder) \
+    macro(DecompressionStreamTransform) \
     macro(Loader) \
     macro(ReadableByteStreamController) \
     macro(ReadableStream) \
