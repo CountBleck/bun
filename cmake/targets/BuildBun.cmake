@@ -673,7 +673,7 @@ register_command(
       -DDOWNLOAD_PATH=${NODEJS_HEADERS_PATH}
       -DDOWNLOAD_URL=https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-headers.tar.gz
       -P ${CWD}/cmake/scripts/DownloadUrl.cmake
-  COMMAND
+    &&
     ${CMAKE_COMMAND}
       -DNODE_INCLUDE_DIR=${NODEJS_HEADERS_PATH}/include
       -P ${CWD}/cmake/scripts/PrepareNodeHeaders.cmake
