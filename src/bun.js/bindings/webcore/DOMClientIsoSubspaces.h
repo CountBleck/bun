@@ -450,6 +450,7 @@ public:
     // std::unique_ptr<GCClient::IsoSubspace> m_clientSubspaceForClipboardEvent;
     // std::unique_ptr<GCClient::IsoSubspace> m_clientSubspaceForComment;
     // std::unique_ptr<GCClient::IsoSubspace> m_clientSubspaceForCompositionEvent;
+    std::unique_ptr<GCClient::IsoSubspace> m_clientSubspaceForCompressionStream;
     // std::unique_ptr<GCClient::IsoSubspace> m_clientSubspaceForCustomElementRegistry;
     std::unique_ptr<GCClient::IsoSubspace> m_clientSubspaceForCustomEvent;
     // std::unique_ptr<GCClient::IsoSubspace> m_clientSubspaceForDOMImplementation;
@@ -464,6 +465,7 @@ public:
     // std::unique_ptr<GCClient::IsoSubspace> m_clientSubspaceForDataTransfer;
     // std::unique_ptr<GCClient::IsoSubspace> m_clientSubspaceForDataTransferItem;
     // std::unique_ptr<GCClient::IsoSubspace> m_clientSubspaceForDataTransferItemList;
+    std::unique_ptr<GCClient::IsoSubspace> m_clientSubspaceForDecompressionStream;
     // std::unique_ptr<GCClient::IsoSubspace> m_clientSubspaceForDeviceMotionEvent;
     // std::unique_ptr<GCClient::IsoSubspace> m_clientSubspaceForDeviceOrientationEvent;
     // std::unique_ptr<GCClient::IsoSubspace> m_clientSubspaceForDocument;

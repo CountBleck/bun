@@ -49,8 +49,10 @@
   ByteLengthQueuingStrategy       ByteLengthQueuingStrategyConstructorCallback         PropertyCallback
   CloseEvent                      CloseEventConstructorCallback                        PropertyCallback
   CountQueuingStrategy            CountQueuingStrategyConstructorCallback              PropertyCallback
+  CompressionStream               CompressionStreamConstructorCallback                 PropertyCallback
   CryptoKey                       CryptoKeyConstructorCallback                         PropertyCallback
   CustomEvent                     CustomEventConstructorCallback                       PropertyCallback
+  DecompressionStream             DecompressionStreamConstructorCallback               PropertyCallback
   DOMException                    DOMExceptionConstructorCallback                      PropertyCallback
   ErrorEvent                      ErrorEventConstructorCallback                        PropertyCallback
   Event                           EventConstructorCallback                             PropertyCallback

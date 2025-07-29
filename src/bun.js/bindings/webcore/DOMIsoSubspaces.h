@@ -435,6 +435,7 @@ public:
     // std::unique_ptr<IsoSubspace> m_subspaceForClipboardEvent;
     // std::unique_ptr<IsoSubspace> m_subspaceForComment;
     // std::unique_ptr<IsoSubspace> m_subspaceForCompositionEvent;
+    std::unique_ptr<IsoSubspace> m_subspaceForCompressionStream;
     // std::unique_ptr<IsoSubspace> m_subspaceForCustomElementRegistry;
     std::unique_ptr<IsoSubspace> m_subspaceForCustomEvent;
     // std::unique_ptr<IsoSubspace> m_subspaceForDOMImplementation;
@@ -449,6 +450,7 @@ public:
     // std::unique_ptr<IsoSubspace> m_subspaceForDataTransfer;
     // std::unique_ptr<IsoSubspace> m_subspaceForDataTransferItem;
     // std::unique_ptr<IsoSubspace> m_subspaceForDataTransferItemList;
+    std::unique_ptr<IsoSubspace> m_subspaceForDecompressionStream;
     // std::unique_ptr<IsoSubspace> m_subspaceForDeviceMotionEvent;
     // std::unique_ptr<IsoSubspace> m_subspaceForDeviceOrientationEvent;
     // std::unique_ptr<IsoSubspace> m_subspaceForDocument;
