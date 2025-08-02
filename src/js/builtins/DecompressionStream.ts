@@ -25,12 +25,12 @@
 
 export function initializeDecompressionStream(format) {
   const errorMessage =
-    "DecompressionStream requires a single argument with the value 'brotli', 'deflate', 'deflate-raw', or 'gzip'.";
+    "DecompressionStream requires a single argument with the value 'brotli', 'deflate', 'deflate-raw', 'gzip', or 'zstd'.";
 
   if (arguments.length < 1) throw new TypeError(errorMessage);
 
-  const algorithms = ["brotli", "gzip", "deflate", "deflate-raw"];
-  const lowercaseFormat = $toString(arguments[0]).toLowerCase();
+  const algorithms = ["brotli", "deflate", "deflate-raw", "gzip", "zstd"];
+  const lowercaseFormat = $toString(format).toLowerCase();
   const findAlgorithm = element => element === lowercaseFormat;
 
   // Pass the index to our new DecompressionStreamDecoder, so we do not need to reparse the string.
@@ -49,7 +49,7 @@ export function initializeDecompressionStream(format) {
 
     try {
       const decoder = $getByIdDirectPrivate(this, "DecompressionStreamDecoder");
-      const buffer = decoder.$decode(chunk);
+      const buffer = decoder.decode(chunk);
 
       if (buffer) {
         const transformStream = $getByIdDirectPrivate(this, "DecompressionStreamTransform");
@@ -65,7 +65,7 @@ export function initializeDecompressionStream(format) {
   const flushAlgorithm = () => {
     try {
       const decoder = $getByIdDirectPrivate(this, "DecompressionStreamDecoder");
-      const buffer = decoder.$flush();
+      const buffer = decoder.flush();
 
       if (buffer) {
         const transformStream = $getByIdDirectPrivate(this, "DecompressionStreamTransform");
@@ -88,15 +88,15 @@ export function initializeDecompressionStream(format) {
 $getter;
 export function readable() {
   const transform = $getByIdDirectPrivate(this, "DecompressionStreamTransform");
-  if (!transform) throw $ERR_INVALID_THIS("DecompressionStreamDecoder");
+  if (!transform) throw $ERR_INVALID_THIS("DecompressionStream");
 
-  return $getByIdDirectPrivate(this, "readable");
+  return $getByIdDirectPrivate(transform, "readable");
 }
 
 $getter;
 export function writable() {
   const transform = $getByIdDirectPrivate(this, "DecompressionStreamTransform");
-  if (!transform) throw $ERR_INVALID_THIS("DecompressionStreamDecoder");
+  if (!transform) throw $ERR_INVALID_THIS("DecompressionStream");
 
-  return $getByIdDirectPrivate(this, "writable");
+  return $getByIdDirectPrivate(transform, "writable");
 }

@@ -25,12 +25,12 @@
 
 export function initializeCompressionStream(format) {
   const errorMessage =
-    "CompressionStream requires a single argument with the value 'brotli', 'deflate', 'deflate-raw', or 'gzip'.";
+    "CompressionStream requires a single argument with the value 'brotli', 'deflate', 'deflate-raw', 'gzip', or 'zstd'.";
 
   if (arguments.length < 1) throw new TypeError(errorMessage);
 
-  const algorithms = ["brotli", "gzip", "deflate", "deflate-raw"];
-  const lowercaseFormat = $toString(arguments[0]).toLowerCase();
+  const algorithms = ["brotli", "deflate", "deflate-raw", "gzip", "zstd"];
+  const lowercaseFormat = $toString(format).toLowerCase();
   const findAlgorithm = element => element === lowercaseFormat;
 
   // Pass the index to our new CompressionStreamEncoder, so we do not need to reparse the string.
@@ -50,7 +50,7 @@ export function initializeCompressionStream(format) {
     try {
       const encoder = $getByIdDirectPrivate(this, "CompressionStreamEncoder");
 
-      let buffer = encoder.$encode(chunk);
+      let buffer = encoder.encode(chunk);
       if (buffer) {
         const transformStream = $getByIdDirectPrivate(this, "CompressionStreamTransform");
         const controller = $getByIdDirectPrivate(transformStream, "controller");
@@ -67,7 +67,7 @@ export function initializeCompressionStream(format) {
 
     let buffer;
     try {
-      buffer = encoder.$flush();
+      buffer = encoder.flush();
     } catch (e) {
       return $Promise.$reject(new TypeError(e.message));
     }
@@ -89,15 +89,15 @@ export function initializeCompressionStream(format) {
 $getter;
 export function readable() {
   const transform = $getByIdDirectPrivate(this, "CompressionStreamTransform");
-  if (!transform) throw $ERR_INVALID_THIS("CompressionStreamEncoder");
+  if (!transform) throw $ERR_INVALID_THIS("CompressionStream");
 
-  return $getByIdDirectPrivate(this, "readable");
+  return $getByIdDirectPrivate(transform, "readable");
 }
 
 $getter;
 export function writable() {
   const transform = $getByIdDirectPrivate(this, "CompressionStreamTransform");
-  if (!transform) throw $ERR_INVALID_THIS("CompressionStreamEncoder");
+  if (!transform) throw $ERR_INVALID_THIS("CompressionStream");
 
-  return $getByIdDirectPrivate(this, "writable");
+  return $getByIdDirectPrivate(transform, "writable");
 }
