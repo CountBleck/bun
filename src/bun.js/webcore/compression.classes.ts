@@ -10,7 +10,7 @@ export default [
     klass: {},
     proto: {
       encode: {
-        fn: "encode",
+        fn: "process",
         length: 1,
 
         DOMJIT: {
@@ -38,7 +38,7 @@ export default [
     klass: {},
     proto: {
       decode: {
-        fn: "decode",
+        fn: "process",
         length: 1,
 
         DOMJIT: {
