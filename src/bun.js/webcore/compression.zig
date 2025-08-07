@@ -162,7 +162,10 @@ fn ZlibContext(is_compressing: bool) type {
 
                 switch (err) {
                     .Ok => {},
-                    .StreamEnd => if (is_compressing) unreachable else bun.assert_eql(this.state.avail_in, 0),
+                    .StreamEnd => if (is_compressing)
+                        unreachable
+                    else if (this.state.avail_in != 0)
+                        return this.throwError(globalObject, err),
                     .MemError => return error.OutOfMemory,
                     .NeedDict, .DataError => if (is_compressing)
                         unreachable
@@ -240,6 +243,7 @@ fn ZlibContext(is_compressing: bool) type {
         fn throwError(this: *Self, globalObject: *JSGlobalObject, err: c.ReturnCode) bun.JSError {
             // TODO: Node-compatible error messages?
             const message = if (this.state.err_msg) |msg| std.mem.sliceTo(msg, 0) else switch (err) {
+                .StreamEnd => "junk found after end of compressed data",
                 .NeedDict => "dictionary required",
                 .DataError => "input corrupted",
                 .BufError => "unexpected end-of-file",
